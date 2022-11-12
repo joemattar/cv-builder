@@ -1,6 +1,6 @@
-import logo from "./logo.svg";
 import "./App.css";
 import Header from "./components/Header/Header.js";
+import InputText from "./components/InputText/InputText";
 import Footer from "./components/Footer/Footer.js";
 
 function App() {
@@ -8,8 +8,9 @@ function App() {
     <div className="App">
       <Header />
       <div className="App-container">
-        <img src={logo} className="App-logo" alt="logo" />
+        <InputText placeholder="Enter your text..." />
       </div>
+
       <Footer />
     </div>
   );
