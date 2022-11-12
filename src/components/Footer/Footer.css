@@ -1,0 +1,21 @@
+.footer {
+  width: 100%;
+  padding: 0.5rem 0;
+  font-size: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.footer a {
+  text-decoration: none;
+
+  display: grid;
+  place-content: center;
+}
+
+.footer img {
+  height: 1rem;
+}

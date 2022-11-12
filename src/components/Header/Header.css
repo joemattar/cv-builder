@@ -1,0 +1,9 @@
+.header {
+  width: 100%;
+  padding: 0.5rem 0;
+
+  font-size: 2rem;
+
+  display: grid;
+  place-content: center;
+}
