@@ -1,9 +1,9 @@
 import React from "react";
-import "./ExperienceSection.css";
-import ExperienceItem from "../ExperienceItem/ExperienceItem.js";
+import "./Section.css";
+import Item from "../Item/Item.js.js";
 import uuid from "react-uuid";
 
-class ExperienceSection extends React.Component {
+class Section extends React.Component {
   constructor(props) {
     super(props);
 
@@ -21,11 +21,8 @@ class ExperienceSection extends React.Component {
 
   displayItems() {
     const itemList = this.state.items.map((itemID) => (
-      <div className="experience-item" key={itemID}>
-        <ExperienceItem
-          experienceItemId={itemID}
-          onDeleteButtonClickHandler={this.deleteItem}
-        />
+      <div className="item" key={itemID}>
+        <Item itemId={itemID} onDeleteButtonClickHandler={this.deleteItem} />
       </div>
     ));
     return itemList;
@@ -49,7 +46,7 @@ class ExperienceSection extends React.Component {
 
   render() {
     return (
-      <form className="experience-section" onSubmit={this.handleSubmit}>
+      <form className="section" onSubmit={this.handleSubmit}>
         <h3>WORK EXPERIENCE</h3>
         {this.displayItems()}
         <button onClick={this.addItem}>ADD EXPERIENCE</button>
@@ -58,4 +55,4 @@ class ExperienceSection extends React.Component {
   }
 }
 
-export default ExperienceSection;
+export default Section;
