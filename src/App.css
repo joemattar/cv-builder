@@ -6,14 +6,14 @@
   grid-template-rows: 3rem 1fr 2rem;
 }
 
-/* .App-container {
-
-} */
-
-.App-container .inputs {
-  width: Min(90vw, 800px);
+.App-container {
+  display: flex;
 }
 
-/* .App-container .output {
+.App-container .inputs {
+  width: Min(90vw, 600px);
+}
 
-} */
+.App-container .output {
+  width: Min(90vw, 600px);
+}
