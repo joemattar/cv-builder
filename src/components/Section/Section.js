@@ -1,8 +1,9 @@
 import React from "react";
 import "./Section.css";
-import Item from "../Item/Item.js.js";
+import Item from "../Item/Item.js";
 import uuid from "react-uuid";
 
+// Warning personal section does not have buttons
 class Section extends React.Component {
   constructor(props) {
     super(props);
