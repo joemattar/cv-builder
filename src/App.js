@@ -1,6 +1,6 @@
 import "./App.css";
 import Header from "./components/Header/Header.js";
-import InputText from "./components/InputText/InputText";
+import ExperienceSection from "./components/ExperienceSection/ExperienceSection";
 import Footer from "./components/Footer/Footer.js";
 
 function App() {
@@ -8,7 +8,10 @@ function App() {
     <div className="App">
       <Header />
       <div className="App-container">
-        <InputText placeholder="Enter your text..." />
+        <div className="inputs">
+          <ExperienceSection />
+        </div>
+        <div className="output"></div>
       </div>
 
       <Footer />

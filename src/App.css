@@ -5,3 +5,15 @@
   display: grid;
   grid-template-rows: 3rem 1fr 2rem;
 }
+
+.App-container {
+
+}
+
+.App-container .inputs {
+  width: Min(90vw, 800px);
+}
+
+.App-container .output {
+
+}

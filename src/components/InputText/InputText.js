@@ -22,7 +22,6 @@ class InputText extends React.Component {
     return (
       <input
         type="text"
-        id={this.props.id}
         name={this.props.name}
         placeholder={this.props.placeholder}
         value={this.state.value}

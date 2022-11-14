@@ -1,0 +1,12 @@
+.experience-item {
+  background-color: aqua;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  
+}
+
+h3 {
+  margin: 0;
+}
