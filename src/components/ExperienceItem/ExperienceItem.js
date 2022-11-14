@@ -14,6 +14,12 @@ class ExperienceItem extends React.Component {
         <InputText id={uuid()} placeholder="From" />
         <InputText id={uuid()} placeholder="To" />
         <InputText id={uuid()} placeholder="Role Description" />
+        <button
+          name={this.props.experienceItemId}
+          onClick={this.props.onDeleteButtonClickHandler}
+        >
+          DELETE
+        </button>
       </div>
     );
   }

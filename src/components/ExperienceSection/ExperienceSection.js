@@ -22,10 +22,10 @@ class ExperienceSection extends React.Component {
   displayItems() {
     const itemList = this.state.items.map((itemID) => (
       <div className="experience-item" key={itemID}>
-        <ExperienceItem experienceItemId={itemID} />
-        <button name={itemID} onClick={this.deleteItem}>
-          DELETE
-        </button>
+        <ExperienceItem
+          experienceItemId={itemID}
+          onDeleteButtonClickHandler={this.deleteItem}
+        />
       </div>
     ));
     return itemList;
