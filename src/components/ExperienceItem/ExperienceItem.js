@@ -1,17 +1,19 @@
 import React from "react";
 import "./ExperienceItem.css";
 import InputText from "../InputText/InputText.js";
+import uuid from "react-uuid";
 
+// Define Experience Item component
 class ExperienceItem extends React.Component {
   render() {
     return (
-      <div className="experience-item">
-        <InputText name="organization" placeholder="Organization" />
-        <InputText name="role" placeholder="Role" />
-        <InputText name="location" placeholder="Organization City, Country" />
-        <InputText name="fromTime" placeholder="From" />
-        <InputText name="toTime" placeholder="To" />
-        <InputText name="description" placeholder="Role Description" />
+      <div className="experience-item" id={this.props.experienceItemId}>
+        <InputText id={uuid()} placeholder="Organization" />
+        <InputText id={uuid()} placeholder="Role" />
+        <InputText id={uuid()} placeholder="Organization City, Country" />
+        <InputText id={uuid()} placeholder="From" />
+        <InputText id={uuid()} placeholder="To" />
+        <InputText id={uuid()} placeholder="Role Description" />
       </div>
     );
   }

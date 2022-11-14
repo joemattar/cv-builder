@@ -1,28 +1,26 @@
 import React from "react";
 import "./InputText.css";
 
+// Define Text Input component
 class InputText extends React.Component {
   constructor(props) {
     super(props);
+    // Set initial value to ""
     this.state = { value: "" };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  // Function to handle typing, deleting in input
   handleChange(event) {
     this.setState({ value: event.target.value });
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
   }
 
   render() {
     return (
       <input
         type="text"
-        name={this.props.name}
+        id={this.props.id}
         placeholder={this.props.placeholder}
         value={this.state.value}
         onChange={this.handleChange}
