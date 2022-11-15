@@ -12,7 +12,10 @@ class PreviewItem extends React.Component {
   // REVIEW ID ASSIGNMENT !!!!
   displayLabels() {
     const previewLabelsList = this.props.labelIDs.map((labelID) => (
-      <label key={labelID} className={labelID} />
+      <label
+        // key={labelID}
+        className={"id-".concat(labelID)}
+      />
     ));
     return previewLabelsList;
   }

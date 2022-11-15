@@ -24,7 +24,7 @@ class Item extends React.Component {
 
     const inputList = numberArray.map((i) => (
       <InputText
-        key={this.props.inputIDs[i]}
+        // key={this.props.inputIDs[i]}
         id={this.props.inputIDs[i]}
         placeholder={placeholderList[i]}
         getInputIdHandler={this.props.getInputIdHandler}

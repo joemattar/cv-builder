@@ -12,9 +12,9 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      personalItems: [uuid()],
-      experienceItems: [uuid()],
-      educationItems: [uuid()],
+      personalItemIDs: [uuid()],
+      experienceItemIDs: [uuid()],
+      educationItemIDs: [uuid()],
     };
 
     this.generateInputIDs = this.generateInputIDs.bind(this);
@@ -54,11 +54,11 @@ class App extends React.Component {
   addItem(event) {
     if (event.target.getAttribute("data-type") === "experience") {
       this.setState({
-        experienceItems: this.state.experienceItems.concat([uuid()]),
+        experienceItemIDs: this.state.experienceItemIDs.concat([uuid()]),
       });
     } else if (event.target.getAttribute("data-type") === "education") {
       this.setState({
-        educationItems: this.state.educationItems.concat([uuid()]),
+        educationItemIDs: this.state.educationItemIDs.concat([uuid()]),
       });
     }
   }
@@ -67,18 +67,18 @@ class App extends React.Component {
   deleteItem(event) {
     const idToDelete = event.target.name;
     if (event.target.getAttribute("data-type") === "experience") {
-      const indexToDelete = this.state.experienceItems.indexOf(idToDelete);
+      const indexToDelete = this.state.experienceItemIDs.indexOf(idToDelete);
       this.setState({
-        experienceItems: this.state.experienceItems
+        experienceItemIDs: this.state.experienceItemIDs
           .slice(0, indexToDelete)
-          .concat(this.state.experienceItems.slice(indexToDelete + 1)),
+          .concat(this.state.experienceItemIDs.slice(indexToDelete + 1)),
       });
     } else if (event.target.getAttribute("data-type") === "education") {
-      const indexToDelete = this.state.educationItems.indexOf(idToDelete);
+      const indexToDelete = this.state.educationItemIDs.indexOf(idToDelete);
       this.setState({
-        educationItems: this.state.educationItems
+        educationItemIDs: this.state.educationItemIDs
           .slice(0, indexToDelete)
-          .concat(this.state.educationItems.slice(indexToDelete + 1)),
+          .concat(this.state.educationItemIDs.slice(indexToDelete + 1)),
       });
     }
   }
@@ -86,7 +86,7 @@ class App extends React.Component {
   getInputId(event) {
     console.log(event.target.id);
     console.log(event.target.value);
-    const targetLabel = document.querySelector(`.${event.target.id}`);
+    const targetLabel = document.querySelector(`.id-${event.target.id}`);
     targetLabel.textContent = event.target.value;
   }
 
@@ -112,7 +112,7 @@ class App extends React.Component {
               data-type={itemTemplates.personal.dataType}
               titleLong={itemTemplates.personal.dataTitleLong}
               titleShort={itemTemplates.personal.dataTitleShort}
-              items={this.state.personalItems}
+              items={this.state.personalItemIDs}
               // REVIEW ID ASSIGNMENT !!!!
               // REVIEW ID ASSIGNMENT !!!!
               inputIDs={personalInputIDs}
@@ -122,7 +122,7 @@ class App extends React.Component {
               data-type={itemTemplates.experience.dataType}
               titleLong={itemTemplates.experience.dataTitleLong}
               titleShort={itemTemplates.experience.dataTitleShort}
-              items={this.state.experienceItems}
+              items={this.state.experienceItemIDs}
               // REVIEW ID ASSIGNMENT !!!!
               // REVIEW ID ASSIGNMENT !!!!
               inputIDs={experienceInputIDs}
@@ -134,7 +134,7 @@ class App extends React.Component {
               data-type={itemTemplates.education.dataType}
               titleLong={itemTemplates.education.dataTitleLong}
               titleShort={itemTemplates.education.dataTitleShort}
-              items={this.state.educationItems}
+              items={this.state.educationItemIDs}
               // REVIEW ID ASSIGNMENT !!!!
               // REVIEW ID ASSIGNMENT !!!!
               inputIDs={educationInputIDs}
@@ -147,7 +147,7 @@ class App extends React.Component {
             <PreviewSection
               data-type={itemTemplates.personal.dataType}
               titleLong={itemTemplates.personal.dataTitleLong}
-              items={this.state.personalItems}
+              items={this.state.personalItemIDs}
               // REVIEW ID ASSIGNMENT !!!!
               // REVIEW ID ASSIGNMENT !!!!
               labelIDs={personalInputIDs}
@@ -156,7 +156,7 @@ class App extends React.Component {
             <PreviewSection
               data-type={itemTemplates.experience.dataType}
               titleLong={itemTemplates.experience.dataTitleLong}
-              items={this.state.experienceItems}
+              items={this.state.experienceItemIDs}
               // REVIEW ID ASSIGNMENT !!!!
               // REVIEW ID ASSIGNMENT !!!!
               labelIDs={experienceInputIDs}
@@ -165,7 +165,7 @@ class App extends React.Component {
             <PreviewSection
               data-type={itemTemplates.education.dataType}
               titleLong={itemTemplates.education.dataTitleLong}
-              items={this.state.educationItems}
+              items={this.state.educationItemIDs}
               // REVIEW ID ASSIGNMENT !!!!
               // REVIEW ID ASSIGNMENT !!!!
               labelIDs={educationInputIDs}
