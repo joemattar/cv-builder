@@ -15,6 +15,16 @@ class App extends React.Component {
       personalItems: [uuid()],
       experienceItems: [uuid()],
       educationItems: [uuid()],
+
+      personalNumberOfPlaceholders: Object.values(
+        itemTemplates.personal.placeholders
+      ).length,
+      experienceNumberOfPlaceholders: Object.values(
+        itemTemplates.experience.placeholders
+      ).length,
+      educationNumberOfPlaceholders: Object.values(
+        itemTemplates.education.placeholders
+      ).length,
     };
 
     this.addItem = this.addItem.bind(this);

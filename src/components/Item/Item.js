@@ -12,7 +12,16 @@ class Item extends React.Component {
     this.displayInputs = this.displayInputs.bind(this);
   }
 
-  displayInputs() {}
+  // REVIEW KEY !!!
+  displayInputs() {
+    const placeholderList = Object.values(
+      itemTemplates[this.props["data-type"]].placeholders
+    );
+    const inputList = placeholderList.map((placeholder) => (
+      <InputText id={uuid()} placeholder={placeholder} />
+    ));
+    return inputList;
+  }
 
   render() {
     let button;
@@ -30,12 +39,7 @@ class Item extends React.Component {
 
     return (
       <div className="item" id={this.props.itemId}>
-        <InputText id={uuid()} placeholder="Organization" />
-        <InputText id={uuid()} placeholder="Role" />
-        <InputText id={uuid()} placeholder="Organization City, Country" />
-        <InputText id={uuid()} placeholder="From" />
-        <InputText id={uuid()} placeholder="To" />
-        <InputText id={uuid()} placeholder="Role Description" />
+        {this.displayInputs()}
         {button}
       </div>
     );
