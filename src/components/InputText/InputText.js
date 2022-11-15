@@ -14,6 +14,7 @@ class InputText extends React.Component {
   // Function to handle typing, deleting in input
   handleChange(event) {
     this.setState({ value: event.target.value });
+    this.props.getInputIdHandler(event);
   }
 
   render() {

@@ -18,7 +18,11 @@ class Item extends React.Component {
       itemTemplates[this.props["data-type"]].placeholders
     );
     const inputList = placeholderList.map((placeholder) => (
-      <InputText id={uuid()} placeholder={placeholder} />
+      <InputText
+        id={uuid()}
+        placeholder={placeholder}
+        getInputIdHandler={this.props.getInputIdHandler}
+      />
     ));
     return inputList;
   }

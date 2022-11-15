@@ -16,6 +16,7 @@ class App extends React.Component {
       experienceItems: [uuid()],
       educationItems: [uuid()],
 
+      // TO REVIEW - OBSOLETE ???
       personalNumberOfPlaceholders: Object.values(
         itemTemplates.personal.placeholders
       ).length,
@@ -29,6 +30,7 @@ class App extends React.Component {
 
     this.addItem = this.addItem.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
+    this.getInputId = this.getInputId.bind(this);
   }
 
   // Method to add an input section item component given a data-type
@@ -64,6 +66,11 @@ class App extends React.Component {
     }
   }
 
+  getInputId(event) {
+    console.log(event.target.id);
+    console.log(event.target.value);
+  }
+
   render() {
     return (
       <div className="App">
@@ -75,6 +82,7 @@ class App extends React.Component {
               titleLong={itemTemplates.personal.dataTitleLong}
               titleShort={itemTemplates.personal.dataTitleShort}
               items={this.state.personalItems}
+              getInputIdHandler={this.getInputId}
             />
             <Section
               data-type={itemTemplates.experience.dataType}
@@ -83,6 +91,7 @@ class App extends React.Component {
               items={this.state.experienceItems}
               addItemHandler={this.addItem}
               deleteItemHandler={this.deleteItem}
+              getInputIdHandler={this.getInputId}
             />
             <Section
               data-type={itemTemplates.education.dataType}
@@ -91,10 +100,28 @@ class App extends React.Component {
               items={this.state.educationItems}
               addItemHandler={this.addItem}
               deleteItemHandler={this.deleteItem}
+              getInputIdHandler={this.getInputId}
             />
           </div>
           <div className="output">
-            <PreviewSection />
+            <PreviewSection
+              data-type={itemTemplates.personal.dataType}
+              titleLong={itemTemplates.personal.dataTitleLong}
+              items={this.state.personalItems}
+              getInputIdHandler={this.getInputId}
+            />
+            <PreviewSection
+              data-type={itemTemplates.experience.dataType}
+              titleLong={itemTemplates.experience.dataTitleLong}
+              items={this.state.experienceItems}
+              getInputIdHandler={this.getInputId}
+            />
+            <PreviewSection
+              data-type={itemTemplates.education.dataType}
+              titleLong={itemTemplates.education.dataTitleLong}
+              items={this.state.educationItems}
+              getInputIdHandler={this.getInputId}
+            />
           </div>
         </div>
 

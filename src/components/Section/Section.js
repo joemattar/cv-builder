@@ -7,6 +7,7 @@ class Section extends React.Component {
   constructor(props) {
     super(props);
 
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.displayItems = this.displayItems.bind(this);
   }
 
@@ -21,6 +22,7 @@ class Section extends React.Component {
           data-type={this.props["data-type"]}
           itemId={itemID}
           deleteItemHandler={this.props.deleteItemHandler}
+          getInputIdHandler={this.props.getInputIdHandler}
         />
       </div>
     ));
