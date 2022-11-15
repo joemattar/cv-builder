@@ -6,6 +6,14 @@ import uuid from "react-uuid";
 
 // Define Experience Item component
 class Item extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.displayInputs = this.displayInputs.bind(this);
+  }
+
+  displayInputs() {}
+
   render() {
     let button;
     if (itemTemplates[this.props["data-type"]].dataHasButtons === true) {
