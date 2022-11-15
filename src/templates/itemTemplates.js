@@ -7,6 +7,10 @@ const itemTemplates = {
     phone: "Phone Number",
     email: "Email Address",
     bio: "Short Bio",
+    dataType: "personal",
+    dataTitleLong: "PERSONAL INFORMATION",
+    dataTitleShort: "PERSONAL",
+    dataHasButtons: false,
   },
   experience: {
     organization: "Organization/Company Name",
@@ -15,6 +19,10 @@ const itemTemplates = {
     to: "To",
     role: "Role",
     description: "Role Description",
+    dataType: "experience",
+    dataTitleLong: "WORK EXPERIENCE",
+    dataTitleShort: "EXPERIENCE",
+    dataHasButtons: true,
   },
   education: {
     organization: "School/College/University Name",
@@ -23,6 +31,10 @@ const itemTemplates = {
     to: "To",
     degree: "Degree",
     field: "Field Of Study",
+    dataType: "education",
+    dataTitleLong: "EDUCATION",
+    dataTitleShort: "EDUCATION",
+    dataHasButtons: true,
   },
 };
 

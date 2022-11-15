@@ -1,19 +1,14 @@
 import React from "react";
 import "./Section.css";
+import itemTemplates from "../../templates/itemTemplates.js";
 import Item from "../Item/Item.js";
-import uuid from "react-uuid";
 
-// Warning personal section does not have buttons
 class Section extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { items: [uuid()] };
-
     this.handleSubmit = this.handleSubmit.bind(this);
     this.displayItems = this.displayItems.bind(this);
-    this.deleteItem = this.deleteItem.bind(this);
-    this.addItem = this.addItem.bind(this);
   }
 
   handleSubmit(event) {
@@ -21,36 +16,36 @@ class Section extends React.Component {
   }
 
   displayItems() {
-    const itemList = this.state.items.map((itemID) => (
+    const itemList = this.props.items.map((itemID) => (
       <div className="item" key={itemID}>
-        <Item itemId={itemID} onDeleteButtonClickHandler={this.deleteItem} />
+        <Item
+          data-type={this.props["data-type"]}
+          itemId={itemID}
+          deleteItemHandler={this.props.deleteItemHandler}
+        />
       </div>
     ));
     return itemList;
   }
 
-  deleteItem(event) {
-    const idToDelete = event.target.name;
-    const indexToDelete = this.state.items.indexOf(idToDelete);
-    this.setState({
-      items: this.state.items
-        .slice(0, indexToDelete)
-        .concat(this.state.items.slice(indexToDelete + 1)),
-    });
-  }
-
-  addItem() {
-    this.setState({
-      items: this.state.items.concat([uuid()]),
-    });
-  }
-
   render() {
+    let button;
+    if (itemTemplates[this.props["data-type"]].dataHasButtons === true) {
+      button = (
+        <button
+          onClick={this.props.addItemHandler}
+          data-type={this.props["data-type"]}
+        >
+          ADD {this.props.titleShort}
+        </button>
+      );
+    }
+
     return (
       <form className="section" onSubmit={this.handleSubmit}>
-        <h3>WORK EXPERIENCE</h3>
+        <h3>{this.props.titleLong}</h3>
         {this.displayItems()}
-        <button onClick={this.addItem}>ADD EXPERIENCE</button>
+        {button}
       </form>
     );
   }
