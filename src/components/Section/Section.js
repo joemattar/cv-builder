@@ -21,6 +21,7 @@ class Section extends React.Component {
         <Item
           data-type={this.props["data-type"]}
           itemId={itemID}
+          inputIDs={this.props.inputIDs}
           deleteItemHandler={this.props.deleteItemHandler}
           getInputIdHandler={this.props.getInputIdHandler}
         />

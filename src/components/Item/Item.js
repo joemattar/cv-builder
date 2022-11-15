@@ -2,7 +2,6 @@ import React from "react";
 import "./Item.css";
 import itemTemplates from "../../templates/itemTemplates.js";
 import InputText from "../InputText/InputText.js";
-import uuid from "react-uuid";
 
 // Define Experience Item component
 class Item extends React.Component {
@@ -12,18 +11,26 @@ class Item extends React.Component {
     this.displayInputs = this.displayInputs.bind(this);
   }
 
-  // REVIEW KEY !!!
+  // REVIEW ID ASSIGNMENT !!!!
+  // REVIEW ID ASSIGNMENT !!!!
   displayInputs() {
+    const numberArray = Array(this.props.inputIDs.length)
+      .fill()
+      .map((x, i) => i);
+
     const placeholderList = Object.values(
       itemTemplates[this.props["data-type"]].placeholders
     );
-    const inputList = placeholderList.map((placeholder) => (
+
+    const inputList = numberArray.map((i) => (
       <InputText
-        id={uuid()}
-        placeholder={placeholder}
+        key={this.props.inputIDs[i]}
+        id={this.props.inputIDs[i]}
+        placeholder={placeholderList[i]}
         getInputIdHandler={this.props.getInputIdHandler}
       />
     ));
+
     return inputList;
   }
 

@@ -1,5 +1,6 @@
 import React from "react";
 import "./PreviewSection.css";
+import PreviewItem from "../PreviewItem/PreviewItem.js";
 
 class PreviewSection extends React.Component {
   constructor(props) {
@@ -10,13 +11,12 @@ class PreviewSection extends React.Component {
 
   displayItems() {
     const previewItemList = this.props.items.map((itemID) => (
-      <div className="preview-item" key={itemID}>
-        {/* <Item
+      <div className={["preview-item", itemID].join(" ")} key={itemID}>
+        <PreviewItem
           data-type={this.props["data-type"]}
           itemId={itemID}
-          deleteItemHandler={this.props.deleteItemHandler}
-          getInputIdHandler={this.props.getInputIdHandler}
-        /> */}
+          labelIDs={this.props.labelIDs}
+        />
       </div>
     ));
     return previewItemList;

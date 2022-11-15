@@ -15,22 +15,39 @@ class App extends React.Component {
       personalItems: [uuid()],
       experienceItems: [uuid()],
       educationItems: [uuid()],
-
-      // TO REVIEW - OBSOLETE ???
-      personalNumberOfPlaceholders: Object.values(
-        itemTemplates.personal.placeholders
-      ).length,
-      experienceNumberOfPlaceholders: Object.values(
-        itemTemplates.experience.placeholders
-      ).length,
-      educationNumberOfPlaceholders: Object.values(
-        itemTemplates.education.placeholders
-      ).length,
     };
 
+    this.generateInputIDs = this.generateInputIDs.bind(this);
     this.addItem = this.addItem.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
     this.getInputId = this.getInputId.bind(this);
+  }
+
+  generateInputIDs(type) {
+    const personalNumberOfPlaceholders = Object.values(
+      itemTemplates.personal.placeholders
+    ).length;
+    const experienceNumberOfPlaceholders = Object.values(
+      itemTemplates.experience.placeholders
+    ).length;
+    const educationNumberOfPlaceholders = Object.values(
+      itemTemplates.education.placeholders
+    ).length;
+
+    let numberOfInputs;
+    if (type === "personal") {
+      numberOfInputs = personalNumberOfPlaceholders;
+    } else if (type === "experience") {
+      numberOfInputs = experienceNumberOfPlaceholders;
+    } else if (type === "education") {
+      numberOfInputs = educationNumberOfPlaceholders;
+    }
+
+    let inputIds = [];
+    for (let i = 0; i < numberOfInputs; i += 1) {
+      inputIds.push(uuid());
+    }
+    return inputIds;
   }
 
   // Method to add an input section item component given a data-type
@@ -69,9 +86,23 @@ class App extends React.Component {
   getInputId(event) {
     console.log(event.target.id);
     console.log(event.target.value);
+    const targetLabel = document.querySelector(`.${event.target.id}`);
+    targetLabel.textContent = event.target.value;
   }
 
   render() {
+    // REVIEW ID ASSIGNMENT !!!!
+    // REVIEW ID ASSIGNMENT !!!!
+    const personalInputIDs = this.generateInputIDs(
+      itemTemplates.personal.dataType
+    );
+    const experienceInputIDs = this.generateInputIDs(
+      itemTemplates.experience.dataType
+    );
+    const educationInputIDs = this.generateInputIDs(
+      itemTemplates.education.dataType
+    );
+
     return (
       <div className="App">
         <Header />
@@ -82,6 +113,9 @@ class App extends React.Component {
               titleLong={itemTemplates.personal.dataTitleLong}
               titleShort={itemTemplates.personal.dataTitleShort}
               items={this.state.personalItems}
+              // REVIEW ID ASSIGNMENT !!!!
+              // REVIEW ID ASSIGNMENT !!!!
+              inputIDs={personalInputIDs}
               getInputIdHandler={this.getInputId}
             />
             <Section
@@ -89,6 +123,9 @@ class App extends React.Component {
               titleLong={itemTemplates.experience.dataTitleLong}
               titleShort={itemTemplates.experience.dataTitleShort}
               items={this.state.experienceItems}
+              // REVIEW ID ASSIGNMENT !!!!
+              // REVIEW ID ASSIGNMENT !!!!
+              inputIDs={experienceInputIDs}
               addItemHandler={this.addItem}
               deleteItemHandler={this.deleteItem}
               getInputIdHandler={this.getInputId}
@@ -98,6 +135,9 @@ class App extends React.Component {
               titleLong={itemTemplates.education.dataTitleLong}
               titleShort={itemTemplates.education.dataTitleShort}
               items={this.state.educationItems}
+              // REVIEW ID ASSIGNMENT !!!!
+              // REVIEW ID ASSIGNMENT !!!!
+              inputIDs={educationInputIDs}
               addItemHandler={this.addItem}
               deleteItemHandler={this.deleteItem}
               getInputIdHandler={this.getInputId}
@@ -108,18 +148,27 @@ class App extends React.Component {
               data-type={itemTemplates.personal.dataType}
               titleLong={itemTemplates.personal.dataTitleLong}
               items={this.state.personalItems}
+              // REVIEW ID ASSIGNMENT !!!!
+              // REVIEW ID ASSIGNMENT !!!!
+              labelIDs={personalInputIDs}
               getInputIdHandler={this.getInputId}
             />
             <PreviewSection
               data-type={itemTemplates.experience.dataType}
               titleLong={itemTemplates.experience.dataTitleLong}
               items={this.state.experienceItems}
+              // REVIEW ID ASSIGNMENT !!!!
+              // REVIEW ID ASSIGNMENT !!!!
+              labelIDs={experienceInputIDs}
               getInputIdHandler={this.getInputId}
             />
             <PreviewSection
               data-type={itemTemplates.education.dataType}
               titleLong={itemTemplates.education.dataTitleLong}
               items={this.state.educationItems}
+              // REVIEW ID ASSIGNMENT !!!!
+              // REVIEW ID ASSIGNMENT !!!!
+              labelIDs={educationInputIDs}
               getInputIdHandler={this.getInputId}
             />
           </div>
