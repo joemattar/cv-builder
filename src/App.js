@@ -97,8 +97,6 @@ class App extends React.Component {
 
   // Method that returns an InputText component ID and value on change
   getInputId(event) {
-    console.log(event.target.id);
-    console.log(event.target.value);
     const targetLabel = document.querySelector(`.${event.target.id}`);
     targetLabel.textContent = event.target.value;
   }

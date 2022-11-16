@@ -45,7 +45,7 @@ class Section extends React.Component {
           onClick={this.props.addItemHandler}
           data-type={this.props["data-type"]}
         >
-          ADD {this.props.titleShort}
+          Add {this.props.titleShort}
         </button>
       );
     }

@@ -30,7 +30,7 @@ class PreviewSection extends React.Component {
 
   render() {
     return (
-      <div className="preview-section">
+      <div className={`preview-section ${this.props["data-type"]}`}>
         <h3>{this.props.titleLong}</h3>
         {this.displayItems()}
       </div>

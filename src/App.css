@@ -1,19 +1,39 @@
 .App {
-  text-align: center;
-  height: 100vh;
-
   display: grid;
   grid-template-rows: 3rem 1fr 2rem;
+
+  height: 100vh;
+
+  text-align: center;
 }
 
 .App-container {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  width: 100vw;
 }
 
 .App-container .inputs {
+  border-color: black;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 2px;
+
+  margin: 1rem;
+
   width: Min(90vw, 600px);
 }
 
 .App-container .output {
+  background-color: blueviolet;
+
+  display: flex;
+  flex-direction: column;
+
+  /* height: 837px; */
+
+  /* width: 648px; */
   width: Min(90vw, 600px);
 }

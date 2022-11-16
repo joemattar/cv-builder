@@ -10,8 +10,8 @@ const itemTemplates = {
       bio: "Short Bio",
     },
     dataType: "personal",
-    dataTitleLong: "PERSONAL INFORMATION",
-    dataTitleShort: "PERSONAL",
+    dataTitleLong: "PERSONAL DETAILS",
+    dataTitleShort: "Personal",
     dataHasButtons: false,
   },
   experience: {
@@ -25,7 +25,7 @@ const itemTemplates = {
     },
     dataType: "experience",
     dataTitleLong: "WORK EXPERIENCE",
-    dataTitleShort: "EXPERIENCE",
+    dataTitleShort: "Experience",
     dataHasButtons: true,
   },
   education: {
@@ -39,7 +39,7 @@ const itemTemplates = {
     },
     dataType: "education",
     dataTitleLong: "EDUCATION",
-    dataTitleShort: "EDUCATION",
+    dataTitleShort: "Education",
     dataHasButtons: true,
   },
 };

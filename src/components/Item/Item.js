@@ -43,7 +43,7 @@ class Item extends React.Component {
           name={this.props.itemId}
           onClick={this.props.deleteItemHandler}
         >
-          DELETE
+          Delete
         </button>
       );
     }
