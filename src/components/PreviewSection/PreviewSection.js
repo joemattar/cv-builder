@@ -10,18 +10,21 @@ class PreviewSection extends React.Component {
     this.displayItems = this.displayItems.bind(this);
   }
 
-  // REVIEW ID ASSIGNMENT !!!!
-  // REVIEW ID ASSIGNMENT !!!!
   // Method to display PreviewItem components in the PreviewSection comopnent
   displayItems() {
-    const previewItemList = this.props.items.map((itemID) => (
+    const numberArray = Array(this.props.itemIDs.length)
+      .fill()
+      .map((x, i) => i);
+
+    const previewItemList = numberArray.map((i) => (
       <PreviewItem
-        // key={uuid()}
         data-type={this.props["data-type"]}
-        itemId={itemID}
-        labelIDs={this.props.labelIDs}
+        key={this.props.itemIDs[i]}
+        itemId={this.props.itemIDs[i]}
+        labelIDs={this.props.labelIDs[i]}
       />
     ));
+
     return previewItemList;
   }
 

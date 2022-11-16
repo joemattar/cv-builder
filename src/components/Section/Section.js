@@ -16,20 +16,23 @@ class Section extends React.Component {
     event.preventDefault();
   }
 
-  // REVIEW ID ASSIGNMENT !!!!
-  // REVIEW ID ASSIGNMENT !!!!
   // Method to display Item components in the Section comopnent
   displayItems() {
-    const itemList = this.props.items.map((itemID) => (
+    const numberArray = Array(this.props.itemIDs.length)
+      .fill()
+      .map((x, i) => i);
+
+    const itemList = numberArray.map((i) => (
       <Item
-        // key={uuid()}
         data-type={this.props["data-type"]}
-        itemId={itemID}
-        inputIDs={this.props.inputIDs}
+        key={this.props.itemIDs[i]}
+        itemId={this.props.itemIDs[i]}
+        inputIDs={this.props.inputIDs[i]}
         deleteItemHandler={this.props.deleteItemHandler}
         getInputIdHandler={this.props.getInputIdHandler}
       />
     ));
+
     return itemList;
   }
 

@@ -7,6 +7,16 @@ import Section from "./components/Section/Section.js";
 import PreviewSection from "./components/PreviewSection/PreviewSection.js";
 import Footer from "./components/Footer/Footer.js";
 
+const personalNumberOfPlaceholders = Object.values(
+  itemTemplates.personal.placeholders
+).length;
+const experienceNumberOfPlaceholders = Object.values(
+  itemTemplates.experience.placeholders
+).length;
+const educationNumberOfPlaceholders = Object.values(
+  itemTemplates.education.placeholders
+).length;
+
 // Define App component
 class App extends React.Component {
   constructor(props) {
@@ -15,8 +25,13 @@ class App extends React.Component {
     // Declare state for parameters holding Item components IDs
     this.state = {
       personalItemIDs: [`id-${uuid()}`],
+      personalInputIDs: [this.generateInputIDs(personalNumberOfPlaceholders)],
       experienceItemIDs: [`id-${uuid()}`],
+      experienceInputIDs: [
+        this.generateInputIDs(experienceNumberOfPlaceholders),
+      ],
       educationItemIDs: [`id-${uuid()}`],
+      educationInputIDs: [this.generateInputIDs(educationNumberOfPlaceholders)],
     };
 
     this.generateInputIDs = this.generateInputIDs.bind(this);
@@ -36,6 +51,8 @@ class App extends React.Component {
   }
 
   // Method to add an Item component ID given a Section component data-type
+  // REVIEW ID ADDITION !!!!
+  // REVIEW ID ADDITION !!!!
   addItem(event) {
     if (event.target.getAttribute("data-type") === "experience") {
       this.setState({
@@ -49,6 +66,8 @@ class App extends React.Component {
   }
 
   // Method to delete an Input component ID given a Section component data-type
+  // REVIEW ID DELETION !!!!
+  // REVIEW ID DELETION !!!!
   deleteItem(event) {
     const idToDelete = event.target.name;
     if (event.target.getAttribute("data-type") === "experience") {
@@ -77,27 +96,6 @@ class App extends React.Component {
   }
 
   render() {
-    const personalNumberOfPlaceholders = Object.values(
-      itemTemplates.personal.placeholders
-    ).length;
-    const experienceNumberOfPlaceholders = Object.values(
-      itemTemplates.experience.placeholders
-    ).length;
-    const educationNumberOfPlaceholders = Object.values(
-      itemTemplates.education.placeholders
-    ).length;
-    // REVIEW ID ASSIGNMENT !!!!
-    // REVIEW ID ASSIGNMENT !!!!
-    const personalInputIDs = this.generateInputIDs(
-      personalNumberOfPlaceholders
-    );
-    const experienceInputIDs = this.generateInputIDs(
-      experienceNumberOfPlaceholders
-    );
-    const educationInputIDs = this.generateInputIDs(
-      educationNumberOfPlaceholders
-    );
-
     return (
       <div className="App">
         <Header />
@@ -107,20 +105,16 @@ class App extends React.Component {
               data-type={itemTemplates.personal.dataType}
               titleLong={itemTemplates.personal.dataTitleLong}
               titleShort={itemTemplates.personal.dataTitleShort}
-              items={this.state.personalItemIDs}
-              // REVIEW ID ASSIGNMENT !!!!
-              // REVIEW ID ASSIGNMENT !!!!
-              inputIDs={personalInputIDs}
+              itemIDs={this.state.personalItemIDs}
+              inputIDs={this.state.personalInputIDs}
               getInputIdHandler={this.getInputId}
             />
             <Section
               data-type={itemTemplates.experience.dataType}
               titleLong={itemTemplates.experience.dataTitleLong}
               titleShort={itemTemplates.experience.dataTitleShort}
-              items={this.state.experienceItemIDs}
-              // REVIEW ID ASSIGNMENT !!!!
-              // REVIEW ID ASSIGNMENT !!!!
-              inputIDs={experienceInputIDs}
+              itemIDs={this.state.experienceItemIDs}
+              inputIDs={this.state.experienceInputIDs}
               addItemHandler={this.addItem}
               deleteItemHandler={this.deleteItem}
               getInputIdHandler={this.getInputId}
@@ -129,10 +123,8 @@ class App extends React.Component {
               data-type={itemTemplates.education.dataType}
               titleLong={itemTemplates.education.dataTitleLong}
               titleShort={itemTemplates.education.dataTitleShort}
-              items={this.state.educationItemIDs}
-              // REVIEW ID ASSIGNMENT !!!!
-              // REVIEW ID ASSIGNMENT !!!!
-              inputIDs={educationInputIDs}
+              itemIDs={this.state.educationItemIDs}
+              inputIDs={this.state.educationInputIDs}
               addItemHandler={this.addItem}
               deleteItemHandler={this.deleteItem}
               getInputIdHandler={this.getInputId}
@@ -142,28 +134,22 @@ class App extends React.Component {
             <PreviewSection
               data-type={itemTemplates.personal.dataType}
               titleLong={itemTemplates.personal.dataTitleLong}
-              items={this.state.personalItemIDs}
-              // REVIEW ID ASSIGNMENT !!!!
-              // REVIEW ID ASSIGNMENT !!!!
-              labelIDs={personalInputIDs}
+              itemIDs={this.state.personalItemIDs}
+              labelIDs={this.state.personalInputIDs}
               getInputIdHandler={this.getInputId}
             />
             <PreviewSection
               data-type={itemTemplates.experience.dataType}
               titleLong={itemTemplates.experience.dataTitleLong}
-              items={this.state.experienceItemIDs}
-              // REVIEW ID ASSIGNMENT !!!!
-              // REVIEW ID ASSIGNMENT !!!!
-              labelIDs={experienceInputIDs}
+              itemIDs={this.state.experienceItemIDs}
+              labelIDs={this.state.experienceInputIDs}
               getInputIdHandler={this.getInputId}
             />
             <PreviewSection
               data-type={itemTemplates.education.dataType}
               titleLong={itemTemplates.education.dataTitleLong}
-              items={this.state.educationItemIDs}
-              // REVIEW ID ASSIGNMENT !!!!
-              // REVIEW ID ASSIGNMENT !!!!
-              labelIDs={educationInputIDs}
+              itemIDs={this.state.educationItemIDs}
+              labelIDs={this.state.educationInputIDs}
               getInputIdHandler={this.getInputId}
             />
           </div>

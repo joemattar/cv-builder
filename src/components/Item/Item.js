@@ -11,8 +11,8 @@ class Item extends React.Component {
     this.displayInputs = this.displayInputs.bind(this);
   }
 
-  // REVIEW ID ASSIGNMENT !!!!
-  // REVIEW ID ASSIGNMENT !!!!
+  // REVIEW KEY ASSIGNMENT !!!!
+  // REVIEW KEY ASSIGNMENT !!!!
   // Method to display the Input components in the Item component
   displayInputs() {
     const numberArray = Array(this.props.inputIDs.length)
@@ -25,7 +25,7 @@ class Item extends React.Component {
 
     const inputList = numberArray.map((i) => (
       <InputText
-        // key={uuid()}
+        key={this.props.inputIDs[i]}
         id={this.props.inputIDs[i]}
         placeholder={placeholderList[i]}
         getInputIdHandler={this.props.getInputIdHandler}
