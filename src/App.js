@@ -57,10 +57,16 @@ class App extends React.Component {
     if (event.target.getAttribute("data-type") === "experience") {
       this.setState({
         experienceItemIDs: this.state.experienceItemIDs.concat([uuid()]),
+        experienceInputIDs: this.state.experienceInputIDs.concat([
+          this.generateInputIDs(experienceNumberOfPlaceholders),
+        ]),
       });
     } else if (event.target.getAttribute("data-type") === "education") {
       this.setState({
         educationItemIDs: this.state.educationItemIDs.concat([uuid()]),
+        educationInputIDs: this.state.educationInputIDs.concat([
+          this.generateInputIDs(educationNumberOfPlaceholders),
+        ]),
       });
     }
   }
