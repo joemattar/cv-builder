@@ -51,8 +51,6 @@ class App extends React.Component {
   }
 
   // Method to add an Item component ID given a Section component data-type
-  // REVIEW ID ADDITION !!!!
-  // REVIEW ID ADDITION !!!!
   addItem(event) {
     if (event.target.getAttribute("data-type") === "experience") {
       this.setState({
@@ -82,6 +80,9 @@ class App extends React.Component {
         experienceItemIDs: this.state.experienceItemIDs
           .slice(0, indexToDelete)
           .concat(this.state.experienceItemIDs.slice(indexToDelete + 1)),
+        experienceInputIDs: this.state.experienceInputIDs
+          .slice(0, indexToDelete)
+          .concat(this.state.experienceInputIDs.slice(indexToDelete + 1)),
       });
     } else if (event.target.getAttribute("data-type") === "education") {
       const indexToDelete = this.state.educationItemIDs.indexOf(idToDelete);
@@ -89,6 +90,9 @@ class App extends React.Component {
         educationItemIDs: this.state.educationItemIDs
           .slice(0, indexToDelete)
           .concat(this.state.educationItemIDs.slice(indexToDelete + 1)),
+        educationInputIDs: this.state.educationInputIDs
+          .slice(0, indexToDelete)
+          .concat(this.state.educationInputIDs.slice(indexToDelete + 1)),
       });
     }
   }
