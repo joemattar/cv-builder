@@ -9,12 +9,10 @@ class PreviewItem extends React.Component {
     this.displayLabels = this.displayLabels.bind(this);
   }
 
-  // REVIEW KEY ASSIGNMENT !!!!
-  // REVIEW KEY ASSIGNMENT !!!!
   // Method to display the label elements in the Item component
   displayLabels() {
     const previewLabelsList = this.props.labelIDs.map((labelID) => (
-      <label key={labelID} className={"preview-label id-".concat(labelID)} />
+      <label key={labelID} className={"preview-label ".concat(labelID)} />
     ));
     return previewLabelsList;
   }

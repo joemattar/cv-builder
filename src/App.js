@@ -45,7 +45,7 @@ class App extends React.Component {
   generateInputIDs(numberOfPlaceholders) {
     let inputIds = [];
     for (let i = 0; i < numberOfPlaceholders; i += 1) {
-      inputIds.push(uuid());
+      inputIds.push(`id-${uuid()}`);
     }
     return inputIds;
   }
@@ -70,8 +70,6 @@ class App extends React.Component {
   }
 
   // Method to delete an Input component ID given a Section component data-type
-  // REVIEW ID DELETION !!!!
-  // REVIEW ID DELETION !!!!
   deleteItem(event) {
     const idToDelete = event.target.name;
     if (event.target.getAttribute("data-type") === "experience") {
@@ -101,7 +99,7 @@ class App extends React.Component {
   getInputId(event) {
     console.log(event.target.id);
     console.log(event.target.value);
-    const targetLabel = document.querySelector(`.id-${event.target.id}`);
+    const targetLabel = document.querySelector(`.${event.target.id}`);
     targetLabel.textContent = event.target.value;
   }
 

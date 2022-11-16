@@ -11,8 +11,6 @@ class Item extends React.Component {
     this.displayInputs = this.displayInputs.bind(this);
   }
 
-  // REVIEW KEY ASSIGNMENT !!!!
-  // REVIEW KEY ASSIGNMENT !!!!
   // Method to display the Input components in the Item component
   displayInputs() {
     const numberArray = Array(this.props.inputIDs.length)
@@ -36,6 +34,7 @@ class Item extends React.Component {
   }
 
   render() {
+    // Check if the Input component has to render buttons or not
     let button;
     if (itemTemplates[this.props["data-type"]].dataHasButtons === true) {
       button = (
