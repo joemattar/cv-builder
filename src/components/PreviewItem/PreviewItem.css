@@ -10,3 +10,10 @@
 h3 {
   margin: 0;
 }
+
+.preview-label {
+  border-style: solid;
+  border-width: 0.1rem;
+  height: 1.125rem;
+  background-color: palegoldenrod;
+}

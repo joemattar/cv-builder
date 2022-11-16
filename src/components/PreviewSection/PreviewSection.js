@@ -2,6 +2,7 @@ import React from "react";
 import "./PreviewSection.css";
 import PreviewItem from "../PreviewItem/PreviewItem.js";
 
+// Define the PreviewSection component
 class PreviewSection extends React.Component {
   constructor(props) {
     super(props);
@@ -9,15 +10,17 @@ class PreviewSection extends React.Component {
     this.displayItems = this.displayItems.bind(this);
   }
 
+  // REVIEW ID ASSIGNMENT !!!!
+  // REVIEW ID ASSIGNMENT !!!!
+  // Method to display PreviewItem components in the PreviewSection comopnent
   displayItems() {
     const previewItemList = this.props.items.map((itemID) => (
-      <div className={["preview-item", itemID].join(" ")} key={itemID}>
-        <PreviewItem
-          data-type={this.props["data-type"]}
-          itemId={itemID}
-          labelIDs={this.props.labelIDs}
-        />
-      </div>
+      <PreviewItem
+        // key={uuid()}
+        data-type={this.props["data-type"]}
+        itemId={itemID}
+        labelIDs={this.props.labelIDs}
+      />
     ));
     return previewItemList;
   }

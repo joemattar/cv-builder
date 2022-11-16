@@ -1,6 +1,7 @@
 import React from "react";
 import "./PreviewItem.css";
 
+// Define PreviewItem component
 class PreviewItem extends React.Component {
   constructor(props) {
     super(props);
@@ -10,11 +11,12 @@ class PreviewItem extends React.Component {
 
   // REVIEW ID ASSIGNMENT !!!!
   // REVIEW ID ASSIGNMENT !!!!
+  // Method to display the label elements in the Item component
   displayLabels() {
     const previewLabelsList = this.props.labelIDs.map((labelID) => (
       <label
-        // key={labelID}
-        className={"id-".concat(labelID)}
+        // key={uuid()}
+        className={"preview-label id-".concat(labelID)}
       />
     ));
     return previewLabelsList;

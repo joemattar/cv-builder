@@ -1,20 +1,22 @@
 import React from "react";
-import "./App.css";
 import uuid from "react-uuid";
+import "./App.css";
 import itemTemplates from "./templates/itemTemplates.js";
 import Header from "./components/Header/Header.js";
 import Section from "./components/Section/Section.js";
 import PreviewSection from "./components/PreviewSection/PreviewSection.js";
 import Footer from "./components/Footer/Footer.js";
 
+// Define App component
 class App extends React.Component {
   constructor(props) {
     super(props);
 
+    // Declare state for parameters holding Item components IDs
     this.state = {
-      personalItemIDs: [uuid()],
-      experienceItemIDs: [uuid()],
-      educationItemIDs: [uuid()],
+      personalItemIDs: [`id-${uuid()}`],
+      experienceItemIDs: [`id-${uuid()}`],
+      educationItemIDs: [`id-${uuid()}`],
     };
 
     this.generateInputIDs = this.generateInputIDs.bind(this);
@@ -23,34 +25,17 @@ class App extends React.Component {
     this.getInputId = this.getInputId.bind(this);
   }
 
-  generateInputIDs(type) {
-    const personalNumberOfPlaceholders = Object.values(
-      itemTemplates.personal.placeholders
-    ).length;
-    const experienceNumberOfPlaceholders = Object.values(
-      itemTemplates.experience.placeholders
-    ).length;
-    const educationNumberOfPlaceholders = Object.values(
-      itemTemplates.education.placeholders
-    ).length;
-
-    let numberOfInputs;
-    if (type === "personal") {
-      numberOfInputs = personalNumberOfPlaceholders;
-    } else if (type === "experience") {
-      numberOfInputs = experienceNumberOfPlaceholders;
-    } else if (type === "education") {
-      numberOfInputs = educationNumberOfPlaceholders;
-    }
-
+  // Method to generate an array of unique IDs based on
+  // the number of Item components in a Section component data-type
+  generateInputIDs(numberOfPlaceholders) {
     let inputIds = [];
-    for (let i = 0; i < numberOfInputs; i += 1) {
+    for (let i = 0; i < numberOfPlaceholders; i += 1) {
       inputIds.push(uuid());
     }
     return inputIds;
   }
 
-  // Method to add an input section item component given a data-type
+  // Method to add an Item component ID given a Section component data-type
   addItem(event) {
     if (event.target.getAttribute("data-type") === "experience") {
       this.setState({
@@ -63,7 +48,7 @@ class App extends React.Component {
     }
   }
 
-  // Method to delete an input section item component given a data-type
+  // Method to delete an Input component ID given a Section component data-type
   deleteItem(event) {
     const idToDelete = event.target.name;
     if (event.target.getAttribute("data-type") === "experience") {
@@ -83,6 +68,7 @@ class App extends React.Component {
     }
   }
 
+  // Method that returns an InputText component ID and value on change
   getInputId(event) {
     console.log(event.target.id);
     console.log(event.target.value);
@@ -91,16 +77,25 @@ class App extends React.Component {
   }
 
   render() {
+    const personalNumberOfPlaceholders = Object.values(
+      itemTemplates.personal.placeholders
+    ).length;
+    const experienceNumberOfPlaceholders = Object.values(
+      itemTemplates.experience.placeholders
+    ).length;
+    const educationNumberOfPlaceholders = Object.values(
+      itemTemplates.education.placeholders
+    ).length;
     // REVIEW ID ASSIGNMENT !!!!
     // REVIEW ID ASSIGNMENT !!!!
     const personalInputIDs = this.generateInputIDs(
-      itemTemplates.personal.dataType
+      personalNumberOfPlaceholders
     );
     const experienceInputIDs = this.generateInputIDs(
-      itemTemplates.experience.dataType
+      experienceNumberOfPlaceholders
     );
     const educationInputIDs = this.generateInputIDs(
-      itemTemplates.education.dataType
+      educationNumberOfPlaceholders
     );
 
     return (

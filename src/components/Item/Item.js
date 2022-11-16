@@ -3,7 +3,7 @@ import "./Item.css";
 import itemTemplates from "../../templates/itemTemplates.js";
 import InputText from "../InputText/InputText.js";
 
-// Define Experience Item component
+// Define Item component
 class Item extends React.Component {
   constructor(props) {
     super(props);
@@ -13,6 +13,7 @@ class Item extends React.Component {
 
   // REVIEW ID ASSIGNMENT !!!!
   // REVIEW ID ASSIGNMENT !!!!
+  // Method to display the Input components in the Item component
   displayInputs() {
     const numberArray = Array(this.props.inputIDs.length)
       .fill()
@@ -24,7 +25,7 @@ class Item extends React.Component {
 
     const inputList = numberArray.map((i) => (
       <InputText
-        // key={this.props.inputIDs[i]}
+        // key={uuid()}
         id={this.props.inputIDs[i]}
         placeholder={placeholderList[i]}
         getInputIdHandler={this.props.getInputIdHandler}

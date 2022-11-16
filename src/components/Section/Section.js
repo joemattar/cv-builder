@@ -3,6 +3,7 @@ import "./Section.css";
 import itemTemplates from "../../templates/itemTemplates.js";
 import Item from "../Item/Item.js";
 
+// Define Section component
 class Section extends React.Component {
   constructor(props) {
     super(props);
@@ -15,22 +16,25 @@ class Section extends React.Component {
     event.preventDefault();
   }
 
+  // REVIEW ID ASSIGNMENT !!!!
+  // REVIEW ID ASSIGNMENT !!!!
+  // Method to display Item components in the Section comopnent
   displayItems() {
     const itemList = this.props.items.map((itemID) => (
-      <div className="item" key={itemID}>
-        <Item
-          data-type={this.props["data-type"]}
-          itemId={itemID}
-          inputIDs={this.props.inputIDs}
-          deleteItemHandler={this.props.deleteItemHandler}
-          getInputIdHandler={this.props.getInputIdHandler}
-        />
-      </div>
+      <Item
+        // key={uuid()}
+        data-type={this.props["data-type"]}
+        itemId={itemID}
+        inputIDs={this.props.inputIDs}
+        deleteItemHandler={this.props.deleteItemHandler}
+        getInputIdHandler={this.props.getInputIdHandler}
+      />
     ));
     return itemList;
   }
 
   render() {
+    // Check if the Section component has to render buttons or not
     let button;
     if (itemTemplates[this.props["data-type"]].dataHasButtons === true) {
       button = (

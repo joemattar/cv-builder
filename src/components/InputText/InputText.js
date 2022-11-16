@@ -5,13 +5,15 @@ import "./InputText.css";
 class InputText extends React.Component {
   constructor(props) {
     super(props);
-    // Set initial value to ""
+
     this.state = { value: "" };
 
     this.handleChange = this.handleChange.bind(this);
   }
 
   // Function to handle typing, deleting in input
+  // Also triggers getInputHandler function that returns
+  // id and value back up to the App component
   handleChange(event) {
     this.setState({ value: event.target.value });
     this.props.getInputIdHandler(event);
