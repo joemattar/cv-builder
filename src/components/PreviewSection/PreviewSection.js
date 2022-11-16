@@ -1,5 +1,6 @@
 import React from "react";
 import "./PreviewSection.css";
+import itemTemplates from "../../templates/itemTemplates.js";
 import PreviewItem from "../PreviewItem/PreviewItem.js";
 
 // Define the PreviewSection component
@@ -29,9 +30,15 @@ class PreviewSection extends React.Component {
   }
 
   render() {
+    // Check if the PreviewSection component has to render h3 or not
+    let previewSectionTitle;
+    if (itemTemplates[this.props["data-type"]].dataType !== "personal") {
+      previewSectionTitle = <h3>{this.props.titleLong}</h3>;
+    }
+
     return (
       <div className={`preview-section ${this.props["data-type"]}`}>
-        <h3>{this.props.titleLong}</h3>
+        {previewSectionTitle}
         {this.displayItems()}
       </div>
     );
