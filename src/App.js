@@ -20,10 +20,8 @@ const educationNumberOfPlaceholders = Object.values(
 // Define App component
 function App(props) {
   // Declare state for parameters holding Item components IDs
-  const [personalItemIDs, setPersonalItemIDs] = useState([`id-${uuid()}`]);
-  const [personalInputIDs, setPersonalInputIDs] = useState([
-    generateInputIDs(personalNumberOfPlaceholders),
-  ]);
+  const personalItemIDs = [`id-${uuid()}`];
+  const personalInputIDs = [generateInputIDs(personalNumberOfPlaceholders)];
   const [experienceItemIDs, setExperienceItemIDs] = useState([`id-${uuid()}`]);
   const [experienceInputIDs, setExperienceInputIDs] = useState([
     generateInputIDs(experienceNumberOfPlaceholders),
