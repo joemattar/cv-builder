@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import uuid from "react-uuid";
 import "./App.css";
 import itemTemplates from "./templates/itemTemplates.js";
@@ -18,31 +18,24 @@ const educationNumberOfPlaceholders = Object.values(
 ).length;
 
 // Define App component
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-
-    // Declare state for parameters holding Item components IDs
-    this.state = {
-      personalItemIDs: [`id-${uuid()}`],
-      personalInputIDs: [this.generateInputIDs(personalNumberOfPlaceholders)],
-      experienceItemIDs: [`id-${uuid()}`],
-      experienceInputIDs: [
-        this.generateInputIDs(experienceNumberOfPlaceholders),
-      ],
-      educationItemIDs: [`id-${uuid()}`],
-      educationInputIDs: [this.generateInputIDs(educationNumberOfPlaceholders)],
-    };
-
-    this.generateInputIDs = this.generateInputIDs.bind(this);
-    this.addItem = this.addItem.bind(this);
-    this.deleteItem = this.deleteItem.bind(this);
-    this.getInputId = this.getInputId.bind(this);
-  }
+function App(props) {
+  // Declare state for parameters holding Item components IDs
+  const [personalItemIDs, setPersonalItemIDs] = useState([`id-${uuid()}`]);
+  const [personalInputIDs, setPersonalInputIDs] = useState([
+    this.generateInputIDs(personalNumberOfPlaceholders),
+  ]);
+  const [experienceItemIDs, setExperienceItemIDs] = useState([`id-${uuid()}`]);
+  const [experienceInputIDs, setExperienceInputIDs] = useState([
+    this.generateInputIDs(experienceNumberOfPlaceholders),
+  ]);
+  const [educationItemIDs, setEducationItemIDs] = useState([`id-${uuid()}`]);
+  const [educationInputIDs, setEducationInputIDs] = useState([
+    this.generateInputIDs(educationNumberOfPlaceholders),
+  ]);
 
   // Method to generate an array of unique IDs based on
   // the number of Item components in a Section component data-type
-  generateInputIDs(numberOfPlaceholders) {
+  function generateInputIDs(numberOfPlaceholders) {
     let inputIds = [];
     for (let i = 0; i < numberOfPlaceholders; i += 1) {
       inputIds.push(`id-${uuid()}`);
@@ -51,120 +44,122 @@ class App extends React.Component {
   }
 
   // Method to add an Item component ID given a Section component data-type
-  addItem(event) {
+  function addItem(event) {
     if (event.target.getAttribute("data-type") === "experience") {
-      this.setState({
-        experienceItemIDs: this.state.experienceItemIDs.concat([uuid()]),
-        experienceInputIDs: this.state.experienceInputIDs.concat([
-          this.generateInputIDs(experienceNumberOfPlaceholders),
-        ]),
-      });
+      setExperienceItemIDs(experienceItemIDs.concat([uuid()]));
+      setExperienceInputIDs(
+        experienceInputIDs.concat([
+          generateInputIDs(experienceNumberOfPlaceholders),
+        ])
+      );
     } else if (event.target.getAttribute("data-type") === "education") {
-      this.setState({
-        educationItemIDs: this.state.educationItemIDs.concat([uuid()]),
-        educationInputIDs: this.state.educationInputIDs.concat([
-          this.generateInputIDs(educationNumberOfPlaceholders),
-        ]),
-      });
+      setEducationItemIDs(educationItemIDs.concat([uuid()]));
+      setEducationInputIDs(
+        educationInputIDs.concat([
+          generateInputIDs(educationNumberOfPlaceholders),
+        ])
+      );
     }
   }
 
   // Method to delete an Input component ID given a Section component data-type
-  deleteItem(event) {
+  function deleteItem(event) {
     const idToDelete = event.target.name;
     if (event.target.getAttribute("data-type") === "experience") {
-      const indexToDelete = this.state.experienceItemIDs.indexOf(idToDelete);
-      this.setState({
-        experienceItemIDs: this.state.experienceItemIDs
+      const indexToDelete = experienceItemIDs.indexOf(idToDelete);
+      setExperienceItemIDs(
+        experienceItemIDs
           .slice(0, indexToDelete)
-          .concat(this.state.experienceItemIDs.slice(indexToDelete + 1)),
-        experienceInputIDs: this.state.experienceInputIDs
+          .concat(this.state.experienceItemIDs.slice(indexToDelete + 1))
+      );
+      setExperienceInputIDs(
+        experienceInputIDs
           .slice(0, indexToDelete)
-          .concat(this.state.experienceInputIDs.slice(indexToDelete + 1)),
-      });
+          .concat(this.state.experienceInputIDs.slice(indexToDelete + 1))
+      );
     } else if (event.target.getAttribute("data-type") === "education") {
-      const indexToDelete = this.state.educationItemIDs.indexOf(idToDelete);
-      this.setState({
-        educationItemIDs: this.state.educationItemIDs
+      const indexToDelete = educationItemIDs.indexOf(idToDelete);
+      setEducationItemIDs(
+        educationItemIDs
           .slice(0, indexToDelete)
-          .concat(this.state.educationItemIDs.slice(indexToDelete + 1)),
-        educationInputIDs: this.state.educationInputIDs
+          .concat(this.state.educationItemIDs.slice(indexToDelete + 1))
+      );
+      setEducationInputIDs(
+        educationInputIDs
           .slice(0, indexToDelete)
-          .concat(this.state.educationInputIDs.slice(indexToDelete + 1)),
-      });
+          .concat(this.state.educationInputIDs.slice(indexToDelete + 1))
+      );
     }
   }
 
   // Method that returns an InputText component ID and value on change
-  getInputId(event) {
+  function getInputId(event) {
     const targetLabel = document.querySelector(`.${event.target.id}`);
     targetLabel.textContent = event.target.value;
   }
 
-  render() {
-    return (
-      <div className="App">
-        <Header />
-        <div className="App-container">
-          <div className="inputs">
-            <Section
-              data-type={itemTemplates.personal.dataType}
-              titleLong={itemTemplates.personal.dataTitleLong}
-              titleShort={itemTemplates.personal.dataTitleShort}
-              itemIDs={this.state.personalItemIDs}
-              inputIDs={this.state.personalInputIDs}
-              getInputIdHandler={this.getInputId}
-            />
-            <Section
-              data-type={itemTemplates.experience.dataType}
-              titleLong={itemTemplates.experience.dataTitleLong}
-              titleShort={itemTemplates.experience.dataTitleShort}
-              itemIDs={this.state.experienceItemIDs}
-              inputIDs={this.state.experienceInputIDs}
-              addItemHandler={this.addItem}
-              deleteItemHandler={this.deleteItem}
-              getInputIdHandler={this.getInputId}
-            />
-            <Section
-              data-type={itemTemplates.education.dataType}
-              titleLong={itemTemplates.education.dataTitleLong}
-              titleShort={itemTemplates.education.dataTitleShort}
-              itemIDs={this.state.educationItemIDs}
-              inputIDs={this.state.educationInputIDs}
-              addItemHandler={this.addItem}
-              deleteItemHandler={this.deleteItem}
-              getInputIdHandler={this.getInputId}
-            />
-          </div>
-          <div className="output">
-            <PreviewSection
-              data-type={itemTemplates.personal.dataType}
-              titleLong={itemTemplates.personal.dataTitleLong}
-              itemIDs={this.state.personalItemIDs}
-              labelIDs={this.state.personalInputIDs}
-              getInputIdHandler={this.getInputId}
-            />
-            <PreviewSection
-              data-type={itemTemplates.experience.dataType}
-              titleLong={itemTemplates.experience.dataTitleLong}
-              itemIDs={this.state.experienceItemIDs}
-              labelIDs={this.state.experienceInputIDs}
-              getInputIdHandler={this.getInputId}
-            />
-            <PreviewSection
-              data-type={itemTemplates.education.dataType}
-              titleLong={itemTemplates.education.dataTitleLong}
-              itemIDs={this.state.educationItemIDs}
-              labelIDs={this.state.educationInputIDs}
-              getInputIdHandler={this.getInputId}
-            />
-          </div>
+  return (
+    <div className="App">
+      <Header />
+      <div className="App-container">
+        <div className="inputs">
+          <Section
+            data-type={itemTemplates.personal.dataType}
+            titleLong={itemTemplates.personal.dataTitleLong}
+            titleShort={itemTemplates.personal.dataTitleShort}
+            itemIDs={personalItemIDs}
+            inputIDs={personalInputIDs}
+            getInputIdHandler={getInputId}
+          />
+          <Section
+            data-type={itemTemplates.experience.dataType}
+            titleLong={itemTemplates.experience.dataTitleLong}
+            titleShort={itemTemplates.experience.dataTitleShort}
+            itemIDs={experienceItemIDs}
+            inputIDs={experienceInputIDs}
+            addItemHandler={addItem}
+            deleteItemHandler={deleteItem}
+            getInputIdHandler={getInputId}
+          />
+          <Section
+            data-type={itemTemplates.education.dataType}
+            titleLong={itemTemplates.education.dataTitleLong}
+            titleShort={itemTemplates.education.dataTitleShort}
+            itemIDs={educationItemIDs}
+            inputIDs={educationInputIDs}
+            addItemHandler={addItem}
+            deleteItemHandler={deleteItem}
+            getInputIdHandler={getInputId}
+          />
         </div>
-
-        <Footer />
+        <div className="output">
+          <PreviewSection
+            data-type={itemTemplates.personal.dataType}
+            titleLong={itemTemplates.personal.dataTitleLong}
+            itemIDs={personalItemIDs}
+            labelIDs={personalInputIDs}
+            getInputIdHandler={getInputId}
+          />
+          <PreviewSection
+            data-type={itemTemplates.experience.dataType}
+            titleLong={itemTemplates.experience.dataTitleLong}
+            itemIDs={experienceItemIDs}
+            labelIDs={experienceInputIDs}
+            getInputIdHandler={getInputId}
+          />
+          <PreviewSection
+            data-type={itemTemplates.education.dataType}
+            titleLong={itemTemplates.education.dataTitleLong}
+            itemIDs={educationItemIDs}
+            labelIDs={educationInputIDs}
+            getInputIdHandler={getInputId}
+          />
+        </div>
       </div>
-    );
-  }
+
+      <Footer />
+    </div>
+  );
 }
 
 export default App;
