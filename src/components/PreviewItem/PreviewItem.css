@@ -38,6 +38,8 @@ h3 {
 
   grid-row: 1 / 4;
   grid-column: 2 /3;
+
+  padding-left: 0.5rem;
 }
 
 .personal .title {

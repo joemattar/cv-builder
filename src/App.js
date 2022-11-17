@@ -22,15 +22,15 @@ function App(props) {
   // Declare state for parameters holding Item components IDs
   const [personalItemIDs, setPersonalItemIDs] = useState([`id-${uuid()}`]);
   const [personalInputIDs, setPersonalInputIDs] = useState([
-    this.generateInputIDs(personalNumberOfPlaceholders),
+    generateInputIDs(personalNumberOfPlaceholders),
   ]);
   const [experienceItemIDs, setExperienceItemIDs] = useState([`id-${uuid()}`]);
   const [experienceInputIDs, setExperienceInputIDs] = useState([
-    this.generateInputIDs(experienceNumberOfPlaceholders),
+    generateInputIDs(experienceNumberOfPlaceholders),
   ]);
   const [educationItemIDs, setEducationItemIDs] = useState([`id-${uuid()}`]);
   const [educationInputIDs, setEducationInputIDs] = useState([
-    this.generateInputIDs(educationNumberOfPlaceholders),
+    generateInputIDs(educationNumberOfPlaceholders),
   ]);
 
   // Method to generate an array of unique IDs based on
@@ -70,24 +70,24 @@ function App(props) {
       setExperienceItemIDs(
         experienceItemIDs
           .slice(0, indexToDelete)
-          .concat(this.state.experienceItemIDs.slice(indexToDelete + 1))
+          .concat(experienceItemIDs.slice(indexToDelete + 1))
       );
       setExperienceInputIDs(
         experienceInputIDs
           .slice(0, indexToDelete)
-          .concat(this.state.experienceInputIDs.slice(indexToDelete + 1))
+          .concat(experienceInputIDs.slice(indexToDelete + 1))
       );
     } else if (event.target.getAttribute("data-type") === "education") {
       const indexToDelete = educationItemIDs.indexOf(idToDelete);
       setEducationItemIDs(
         educationItemIDs
           .slice(0, indexToDelete)
-          .concat(this.state.educationItemIDs.slice(indexToDelete + 1))
+          .concat(educationItemIDs.slice(indexToDelete + 1))
       );
       setEducationInputIDs(
         educationInputIDs
           .slice(0, indexToDelete)
-          .concat(this.state.educationInputIDs.slice(indexToDelete + 1))
+          .concat(educationInputIDs.slice(indexToDelete + 1))
       );
     }
   }
