@@ -11,6 +11,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: flex-start;
 
   width: 100vw;
 }
@@ -27,13 +28,17 @@
 }
 
 .App-container .output {
-  background-color: blueviolet;
+  border-style: solid;
+  border-width: 1px;
+
+  box-shadow: 2px 2px 3px gray;
 
   display: flex;
   flex-direction: column;
 
-  /* height: 837px; */
+  margin: 1rem;
 
-  /* width: 648px; */
-  width: Min(90vw, 800px);
+  min-height: 279.4mm;
+
+  width: Min(90vw, 215.9mm);
 }

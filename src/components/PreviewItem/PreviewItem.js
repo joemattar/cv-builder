@@ -30,7 +30,19 @@ class PreviewItem extends React.Component {
   }
 
   render() {
-    return <div className="preview-item">{this.displayLabels()}</div>;
+    let timeSeparator;
+    if (
+      this.props["data-type"] === "experience" ||
+      this.props["data-type"] === "education"
+    ) {
+      timeSeparator = <label className="preview-label separator">|</label>;
+    }
+    return (
+      <div className="preview-item">
+        {this.displayLabels()}
+        {timeSeparator}
+      </div>
+    );
   }
 }
 
