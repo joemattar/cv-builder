@@ -1,3 +1,26 @@
+button {
+  background-color: transparent;
+
+  border-radius: 4px;
+  border-width: 2px;
+
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: bold;
+
+  width: 8rem;
+}
+
+button:hover {
+  box-shadow: 2px 2px 3px gray;
+}
+
+button.print-button {
+  background-color: rgb(91, 188, 91);
+
+  margin-top: 1rem;
+}
+
 .App {
   display: grid;
   grid-template-rows: 3rem 1fr 2rem;

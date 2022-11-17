@@ -26,7 +26,9 @@ function PreviewSection(props) {
   // Check if the PreviewSection component has to render h3 or not
   let previewSectionTitle;
   if (itemTemplates[props["data-type"]].dataType !== "personal") {
-    previewSectionTitle = <h3>{props.titleLong}</h3>;
+    previewSectionTitle = (
+      <div className="preview-section-title">{props.titleLong}</div>
+    );
   }
 
   return (

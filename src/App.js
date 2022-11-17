@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import uuid from "react-uuid";
+import { useReactToPrint } from "react-to-print";
 import "./App.css";
 import itemTemplates from "./templates/itemTemplates.js";
 import Header from "./components/Header/Header.js";
@@ -18,10 +19,12 @@ const educationNumberOfPlaceholders = Object.values(
 ).length;
 
 // Define App component
-function App(props) {
+function App() {
   // Declare state for parameters holding Item components IDs
-  const personalItemIDs = [`id-${uuid()}`];
-  const personalInputIDs = [generateInputIDs(personalNumberOfPlaceholders)];
+  const [personalItemIDs] = useState([`id-${uuid()}`]);
+  const [personalInputIDs] = useState([
+    generateInputIDs(personalNumberOfPlaceholders),
+  ]);
   const [experienceItemIDs, setExperienceItemIDs] = useState([`id-${uuid()}`]);
   const [experienceInputIDs, setExperienceInputIDs] = useState([
     generateInputIDs(experienceNumberOfPlaceholders),
@@ -30,6 +33,9 @@ function App(props) {
   const [educationInputIDs, setEducationInputIDs] = useState([
     generateInputIDs(educationNumberOfPlaceholders),
   ]);
+
+  // Declare containerRef for printing
+  const containerRef = useRef(null);
 
   // Method to generate an array of unique IDs based on
   // the number of Item components in a Section component data-type
@@ -96,6 +102,9 @@ function App(props) {
     targetLabel.textContent = event.target.value;
   }
 
+  // Method that handles PDF printing
+  const handlePrint = useReactToPrint({ content: () => containerRef.current });
+
   return (
     <div className="App">
       <Header />
@@ -130,28 +139,33 @@ function App(props) {
             getInputIdHandler={getInputId}
           />
         </div>
-        <div className="output">
-          <PreviewSection
-            data-type={itemTemplates.personal.dataType}
-            titleLong={itemTemplates.personal.dataTitleLong}
-            itemIDs={personalItemIDs}
-            labelIDs={personalInputIDs}
-            getInputIdHandler={getInputId}
-          />
-          <PreviewSection
-            data-type={itemTemplates.experience.dataType}
-            titleLong={itemTemplates.experience.dataTitleLong}
-            itemIDs={experienceItemIDs}
-            labelIDs={experienceInputIDs}
-            getInputIdHandler={getInputId}
-          />
-          <PreviewSection
-            data-type={itemTemplates.education.dataType}
-            titleLong={itemTemplates.education.dataTitleLong}
-            itemIDs={educationItemIDs}
-            labelIDs={educationInputIDs}
-            getInputIdHandler={getInputId}
-          />
+        <div>
+          <button className="print-button" onClick={handlePrint}>
+            PRINT CV
+          </button>
+          <div className="output" ref={containerRef}>
+            <PreviewSection
+              data-type={itemTemplates.personal.dataType}
+              titleLong={itemTemplates.personal.dataTitleLong}
+              itemIDs={personalItemIDs}
+              labelIDs={personalInputIDs}
+              getInputIdHandler={getInputId}
+            />
+            <PreviewSection
+              data-type={itemTemplates.experience.dataType}
+              titleLong={itemTemplates.experience.dataTitleLong}
+              itemIDs={experienceItemIDs}
+              labelIDs={experienceInputIDs}
+              getInputIdHandler={getInputId}
+            />
+            <PreviewSection
+              data-type={itemTemplates.education.dataType}
+              titleLong={itemTemplates.education.dataTitleLong}
+              itemIDs={educationItemIDs}
+              labelIDs={educationInputIDs}
+              getInputIdHandler={getInputId}
+            />
+          </div>
         </div>
       </div>
 
