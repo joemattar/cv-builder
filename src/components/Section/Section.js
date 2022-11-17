@@ -4,60 +4,49 @@ import itemTemplates from "../../templates/itemTemplates.js";
 import Item from "../Item/Item.js";
 
 // Define Section component
-class Section extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.displayItems = this.displayItems.bind(this);
-  }
-
-  handleSubmit(event) {
+function Section(props) {
+  // Method to prevent form submittal on buttons click
+  function handleSubmit(event) {
     event.preventDefault();
   }
 
   // Method to display Item components in the Section comopnent
-  displayItems() {
-    const numberArray = Array(this.props.itemIDs.length)
+  function displayItems() {
+    const numberArray = Array(props.itemIDs.length)
       .fill()
       .map((x, i) => i);
 
     const itemList = numberArray.map((i) => (
       <Item
-        data-type={this.props["data-type"]}
-        key={this.props.itemIDs[i]}
-        itemId={this.props.itemIDs[i]}
-        inputIDs={this.props.inputIDs[i]}
-        deleteItemHandler={this.props.deleteItemHandler}
-        getInputIdHandler={this.props.getInputIdHandler}
+        data-type={props["data-type"]}
+        key={props.itemIDs[i]}
+        itemId={props.itemIDs[i]}
+        inputIDs={props.inputIDs[i]}
+        deleteItemHandler={props.deleteItemHandler}
+        getInputIdHandler={props.getInputIdHandler}
       />
     ));
 
     return itemList;
   }
 
-  render() {
-    // Check if the Section component has to render buttons or not
-    let button;
-    if (itemTemplates[this.props["data-type"]].dataHasButtons === true) {
-      button = (
-        <button
-          onClick={this.props.addItemHandler}
-          data-type={this.props["data-type"]}
-        >
-          Add {this.props.titleShort}
-        </button>
-      );
-    }
-
-    return (
-      <form className="section" onSubmit={this.handleSubmit}>
-        <h3>{this.props.titleLong}</h3>
-        {this.displayItems()}
-        {button}
-      </form>
+  // Check if the Section component has to render buttons or not
+  let button;
+  if (itemTemplates[props["data-type"]].dataHasButtons === true) {
+    button = (
+      <button onClick={props.addItemHandler} data-type={props["data-type"]}>
+        Add {props.titleShort}
+      </button>
     );
   }
+
+  return (
+    <form className="section" onSubmit={handleSubmit}>
+      <h3>{props.titleLong}</h3>
+      {displayItems()}
+      {button}
+    </form>
+  );
 }
 
 export default Section;
