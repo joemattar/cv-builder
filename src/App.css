@@ -38,7 +38,9 @@
 
   margin: 1rem;
 
-  min-height: 279.4mm;
+  min-height: Calc(279.4mm - 2rem);
 
-  width: Min(90vw, 215.9mm);
+  padding: 1rem;
+
+  width: Min(90vw, 215.9mm - 2rem);
 }

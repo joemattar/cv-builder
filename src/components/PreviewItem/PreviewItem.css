@@ -1,7 +1,7 @@
 .preview-item {
   display: grid;
   grid-template-rows: auto auto auto auto;
-  grid-template-columns: max-content auto min-content min-content min-content;
+  grid-template-columns: max-content 1fr min-content min-content min-content;
   gap: 0.5rem;
   
 }
@@ -11,6 +11,8 @@ h3 {
 }
 
 .preview-label {
+  background-color: palegoldenrod;
+
   display: flex;
   align-items: center;
 
@@ -42,7 +44,8 @@ h3 {
 
 .personal .title {
   font-size: 1rem;
-  font-style: italic;
+  font-weight: bold;
+
 
   grid-row: 4 / 5;
   grid-column: 1 / 3;
@@ -75,6 +78,8 @@ h3 {
 }
 
 .personal .bio {
+  font-style: italic;
+
   grid-row: 5 / 6;
   grid-column: 1 / 4;
 
@@ -97,7 +102,7 @@ h3 {
 }
 
 .experience .location {
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-style: italic;
 
   grid-row: 2 / 3;
@@ -111,6 +116,8 @@ h3 {
   grid-column: 1 / 6;
 
   padding-top: 0.5rem;
+
+  text-align: left;
 }
 
 .education .degree {
@@ -132,7 +139,7 @@ h3 {
 }
 
 .education .location {
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-style: italic;
 
   grid-row: 3 / 4;
